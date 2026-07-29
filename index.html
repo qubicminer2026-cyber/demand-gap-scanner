@@ -150,6 +150,10 @@
   .trend-stabil { background: var(--t-stabil-soft); color: var(--t-stabil); }
   .trend-abklingend { background: var(--t-abklingend-soft); color: var(--t-abklingend); }
 
+  .spark-cell { display: flex; align-items: center; gap: 0.4rem; }
+  .spark { display: block; }
+  .spark-count { font-family: ui-monospace, monospace; font-size: 0.72rem; color: var(--ink-soft); }
+
   .quotes { max-width: 38ch; font-size: 0.8rem; line-height: 1.45; color: var(--ink-soft); }
   .quotes blockquote { margin: 0 0 0.4rem 0; padding: 0; }
   .quotes a { color: var(--accent); text-decoration: none; font-size: 0.76rem; }
@@ -186,6 +190,7 @@
       <thead>
         <tr>
           <th data-key="trend" class="sorted">Trend</th>
+          <th>Verlauf</th>
           <th data-key="titel">Idee</th>
           <th data-key="kategorie">Kategorie</th>
           <th data-key="erwaehnungen_gesamt">Erwähnungen</th>
@@ -214,8 +219,22 @@
     "erwaehnungen_heute": 2,
     "trend": "neu",
     "beispiele": [
-      {"zitat": "I need an Audio tool to remaster old songs. Basically to bring old songs to modern crystal clear quality. I would be happy pay subscription fees. Is there a tool for that?", "quelle_url": "https://news.ycombinator.com/item?id=48267796", "datum": "2026-07-29"},
-      {"zitat": "I would like to have an AI audio model that I can train on hours of clean audio of my voice, and then feed it a very noisy audio file of a lecture I did, that it can effectively clean up to get rid of all the noise.", "quelle_url": "https://news.ycombinator.com/item?id=45051904", "datum": "2026-07-29"}
+      {
+        "zitat": "I need an Audio tool to remaster old songs. Basically to bring old songs to modern crystal clear quality. I would be happy pay subscription fees. Is there a tool for that?",
+        "quelle_url": "https://news.ycombinator.com/item?id=48267796",
+        "datum": "2026-07-29"
+      },
+      {
+        "zitat": "I would like to have an AI audio model that I can train on hours of clean audio of my voice, and then feed it a very noisy audio file of a lecture I did, that it can effectively clean up to get rid of all the noise.",
+        "quelle_url": "https://news.ycombinator.com/item?id=45051904",
+        "datum": "2026-07-29"
+      }
+    ],
+    "verlauf": [
+      {
+        "datum": "2026-07-29",
+        "erwaehnungen": 2
+      }
     ]
   },
   {
@@ -229,7 +248,17 @@
     "erwaehnungen_heute": 1,
     "trend": "neu",
     "beispiele": [
-      {"zitat": "Why isn't there an app that just posts to blue sky mastodon and twitter? I find it annoying that companies and some gov depts post on twitter only...", "quelle_url": "https://news.ycombinator.com/item?id=42160449", "datum": "2026-07-29"}
+      {
+        "zitat": "Why isn't there an app that just posts to blue sky mastodon and twitter? I find it annoying that companies and some gov depts post on twitter only...",
+        "quelle_url": "https://news.ycombinator.com/item?id=42160449",
+        "datum": "2026-07-29"
+      }
+    ],
+    "verlauf": [
+      {
+        "datum": "2026-07-29",
+        "erwaehnungen": 1
+      }
     ]
   },
   {
@@ -243,7 +272,17 @@
     "erwaehnungen_heute": 1,
     "trend": "neu",
     "beispiele": [
-      {"zitat": "is there an app that compares grocery prices (Google-Autocomplete-Vorschlag)", "quelle_url": "https://www.google.com/search?q=is+there+an+app+that+compares+grocery+prices", "datum": "2026-07-29"}
+      {
+        "zitat": "is there an app that compares grocery prices (Google-Autocomplete-Vorschlag)",
+        "quelle_url": "https://www.google.com/search?q=is+there+an+app+that+compares+grocery+prices",
+        "datum": "2026-07-29"
+      }
+    ],
+    "verlauf": [
+      {
+        "datum": "2026-07-29",
+        "erwaehnungen": 1
+      }
     ]
   },
   {
@@ -257,9 +296,27 @@
     "erwaehnungen_heute": 3,
     "trend": "neu",
     "beispiele": [
-      {"zitat": "is there a tool that can detect mold (Google-Autocomplete)", "quelle_url": "https://www.google.com/search?q=is+there+a+tool+that+can+detect+mold", "datum": "2026-07-29"},
-      {"zitat": "is there a tool that detects water leaks (Google-Autocomplete)", "quelle_url": "https://www.google.com/search?q=is+there+a+tool+that+detects+water+leaks", "datum": "2026-07-29"},
-      {"zitat": "is there a tool that can see through drywall (Google-Autocomplete)", "quelle_url": "https://www.google.com/search?q=is+there+a+tool+that+can+see+through+drywall", "datum": "2026-07-29"}
+      {
+        "zitat": "is there a tool that can detect mold (Google-Autocomplete)",
+        "quelle_url": "https://www.google.com/search?q=is+there+a+tool+that+can+detect+mold",
+        "datum": "2026-07-29"
+      },
+      {
+        "zitat": "is there a tool that detects water leaks (Google-Autocomplete)",
+        "quelle_url": "https://www.google.com/search?q=is+there+a+tool+that+detects+water+leaks",
+        "datum": "2026-07-29"
+      },
+      {
+        "zitat": "is there a tool that can see through drywall (Google-Autocomplete)",
+        "quelle_url": "https://www.google.com/search?q=is+there+a+tool+that+can+see+through+drywall",
+        "datum": "2026-07-29"
+      }
+    ],
+    "verlauf": [
+      {
+        "datum": "2026-07-29",
+        "erwaehnungen": 3
+      }
     ]
   },
   {
@@ -273,7 +330,17 @@
     "erwaehnungen_heute": 1,
     "trend": "neu",
     "beispiele": [
-      {"zitat": "Is there a tool that notifies immediately about new docker image versions", "quelle_url": "https://stackoverflow.com/questions/71504608/is-there-a-tool-that-notifies-immediately-about-new-docker-image-versions", "datum": "2026-07-29"}
+      {
+        "zitat": "Is there a tool that notifies immediately about new docker image versions",
+        "quelle_url": "https://stackoverflow.com/questions/71504608/is-there-a-tool-that-notifies-immediately-about-new-docker-image-versions",
+        "datum": "2026-07-29"
+      }
+    ],
+    "verlauf": [
+      {
+        "datum": "2026-07-29",
+        "erwaehnungen": 1
+      }
     ]
   },
   {
@@ -287,8 +354,22 @@
     "erwaehnungen_heute": 2,
     "trend": "neu",
     "beispiele": [
-      {"zitat": "What I'm missing is a tool to inspect iOS simulator the same way. Is there a tool for that yet? The Xcode MCP wasn't really helpful.", "quelle_url": "https://news.ycombinator.com/item?id=47501116", "datum": "2026-07-29"},
-      {"zitat": "Is there a way to grant Speech Recognition permissions programmatically for the iOS simulator?", "quelle_url": "https://stackoverflow.com/questions/79981394/is-there-a-way-to-grant-speech-recognition-permissions-programmatically-for-the", "datum": "2026-07-29"}
+      {
+        "zitat": "What I'm missing is a tool to inspect iOS simulator the same way. Is there a tool for that yet? The Xcode MCP wasn't really helpful.",
+        "quelle_url": "https://news.ycombinator.com/item?id=47501116",
+        "datum": "2026-07-29"
+      },
+      {
+        "zitat": "Is there a way to grant Speech Recognition permissions programmatically for the iOS simulator?",
+        "quelle_url": "https://stackoverflow.com/questions/79981394/is-there-a-way-to-grant-speech-recognition-permissions-programmatically-for-the",
+        "datum": "2026-07-29"
+      }
+    ],
+    "verlauf": [
+      {
+        "datum": "2026-07-29",
+        "erwaehnungen": 2
+      }
     ]
   },
   {
@@ -302,7 +383,17 @@
     "erwaehnungen_heute": 1,
     "trend": "neu",
     "beispiele": [
-      {"zitat": "Is there a tool out there that you can put software releases into and it will tell you how safe it is? ... Crowdstrike and other modern antivirus may react to it once it's on a device.", "quelle_url": "https://news.ycombinator.com/item?id=47720321", "datum": "2026-07-29"}
+      {
+        "zitat": "Is there a tool out there that you can put software releases into and it will tell you how safe it is? ... Crowdstrike and other modern antivirus may react to it once it's on a device.",
+        "quelle_url": "https://news.ycombinator.com/item?id=47720321",
+        "datum": "2026-07-29"
+      }
+    ],
+    "verlauf": [
+      {
+        "datum": "2026-07-29",
+        "erwaehnungen": 1
+      }
     ]
   },
   {
@@ -316,9 +407,27 @@
     "erwaehnungen_heute": 3,
     "trend": "neu",
     "beispiele": [
-      {"zitat": "why is there no app for netflix on mac (Google-Autocomplete)", "quelle_url": "https://www.google.com/search?q=why+is+there+no+app+for+netflix+on+mac", "datum": "2026-07-29"},
-      {"zitat": "why is there no app for youtube on mac (Google-Autocomplete)", "quelle_url": "https://www.google.com/search?q=why+is+there+no+app+for+youtube+on+mac", "datum": "2026-07-29"},
-      {"zitat": "why is there no app for google forms (Google-Autocomplete)", "quelle_url": "https://www.google.com/search?q=why+is+there+no+app+for+google+forms", "datum": "2026-07-29"}
+      {
+        "zitat": "why is there no app for netflix on mac (Google-Autocomplete)",
+        "quelle_url": "https://www.google.com/search?q=why+is+there+no+app+for+netflix+on+mac",
+        "datum": "2026-07-29"
+      },
+      {
+        "zitat": "why is there no app for youtube on mac (Google-Autocomplete)",
+        "quelle_url": "https://www.google.com/search?q=why+is+there+no+app+for+youtube+on+mac",
+        "datum": "2026-07-29"
+      },
+      {
+        "zitat": "why is there no app for google forms (Google-Autocomplete)",
+        "quelle_url": "https://www.google.com/search?q=why+is+there+no+app+for+google+forms",
+        "datum": "2026-07-29"
+      }
+    ],
+    "verlauf": [
+      {
+        "datum": "2026-07-29",
+        "erwaehnungen": 3
+      }
     ]
   },
   {
@@ -332,7 +441,17 @@
     "erwaehnungen_heute": 1,
     "trend": "neu",
     "beispiele": [
-      {"zitat": "Something I wish someone would build is a smarter Wireshark. \"Something is hinky on my network. Figure out what it is and who's causing it.\" Wireshark is awesome, but the problem is...", "quelle_url": "https://news.ycombinator.com/item?id=33823448", "datum": "2026-07-29"}
+      {
+        "zitat": "Something I wish someone would build is a smarter Wireshark. \"Something is hinky on my network. Figure out what it is and who's causing it.\" Wireshark is awesome, but the problem is...",
+        "quelle_url": "https://news.ycombinator.com/item?id=33823448",
+        "datum": "2026-07-29"
+      }
+    ],
+    "verlauf": [
+      {
+        "datum": "2026-07-29",
+        "erwaehnungen": 1
+      }
     ]
   },
   {
@@ -346,7 +465,17 @@
     "erwaehnungen_heute": 1,
     "trend": "neu",
     "beispiele": [
-      {"zitat": "I need a Windows executable that takes a directory of audio files, and transcribes them to similarly named text files, so they can be searched.", "quelle_url": "https://news.ycombinator.com/item?id=35471202", "datum": "2026-07-29"}
+      {
+        "zitat": "I need a Windows executable that takes a directory of audio files, and transcribes them to similarly named text files, so they can be searched.",
+        "quelle_url": "https://news.ycombinator.com/item?id=35471202",
+        "datum": "2026-07-29"
+      }
+    ],
+    "verlauf": [
+      {
+        "datum": "2026-07-29",
+        "erwaehnungen": 1
+      }
     ]
   }
 ];
@@ -365,6 +494,12 @@
       <tr>
         <td><span class="trend-pill trend-${c.trend}">${trendLabel[c.trend] || c.trend}</span></td>
         <td>
+          <div class="spark-cell">
+            <canvas class="spark" id="spark-${c.id}" width="72" height="22"></canvas>
+            <span class="spark-count">${(c.verlauf || []).length}d</span>
+          </div>
+        </td>
+        <td>
           <div class="idea-title">${c.titel}</div>
           <div class="idea-desc">${c.beschreibung}</div>
         </td>
@@ -375,6 +510,62 @@
         <td class="quotes">${c.beispiele.map(b => `<blockquote>&ldquo;${b.zitat}&rdquo;<br><a href="${b.quelle_url}" target="_blank" rel="noopener">Quelle ↗</a></blockquote>`).join("")}</td>
       </tr>
     `).join("");
+    rows.forEach(c => drawSparkline(`spark-${c.id}`, c.verlauf || []));
+  }
+
+  function drawSparkline(canvasId, verlauf) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const dpr = window.devicePixelRatio || 1;
+    const w = canvas.width, h = canvas.height;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + "px"; canvas.style.height = h + "px";
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, w, h);
+
+    const styles = getComputedStyle(document.documentElement);
+    const accent = styles.getPropertyValue("--accent").trim();
+    const pad = 3;
+
+    if (!verlauf.length) return;
+
+    if (verlauf.length === 1) {
+      ctx.fillStyle = accent;
+      ctx.beginPath();
+      ctx.arc(w - pad - 2, h / 2, 2.2, 0, Math.PI * 2);
+      ctx.fill();
+      return;
+    }
+
+    const values = verlauf.map(v => v.erwaehnungen);
+    const min = Math.min(...values), max = Math.max(...values);
+    const range = max - min || 1;
+    const stepX = (w - pad * 2) / (values.length - 1);
+    const points = values.map((v, i) => [
+      pad + i * stepX,
+      h - pad - ((v - min) / range) * (h - pad * 2)
+    ]);
+
+    ctx.beginPath();
+    ctx.moveTo(points[0][0], h);
+    points.forEach(p => ctx.lineTo(p[0], p[1]));
+    ctx.lineTo(points[points.length - 1][0], h);
+    ctx.closePath();
+    ctx.fillStyle = accent + "26";
+    ctx.fill();
+
+    ctx.beginPath();
+    points.forEach((p, i) => i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]));
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 1.4;
+    ctx.stroke();
+
+    const last = points[points.length - 1];
+    ctx.fillStyle = accent;
+    ctx.beginPath();
+    ctx.arc(last[0], last[1], 2.2, 0, Math.PI * 2);
+    ctx.fill();
   }
 
   let sortKey = "trend";
