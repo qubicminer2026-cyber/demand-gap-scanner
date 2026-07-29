@@ -1,0 +1,380 @@
+<title>Demand-Gap Scanner</title>
+<style>
+  :root {
+    --paper: #F0ECE3;
+    --paper-raised: #F8F5EF;
+    --ink: #201C16;
+    --ink-soft: #6B6457;
+    --line: #D9D2C3;
+    --accent: #5B3EBD;
+    --accent-soft: #ECE7FB;
+    --info: #2E6FBB;
+    --info-soft: #E3ECF7;
+    --t-neu: #2E6FBB; --t-neu-soft: #E3ECF7;
+    --t-steigend: #3F8F5F; --t-steigend-soft: #E4F0E8;
+    --t-stabil: #8A8577; --t-stabil-soft: #ECEAE4;
+    --t-abklingend: #A15A3A; --t-abklingend-soft: #F2E7E1;
+    --shadow: 0 1px 2px rgba(32,28,22,0.06), 0 6px 20px rgba(32,28,22,0.05);
+  }
+  :root[data-theme="dark"] {
+    --paper: #17140F;
+    --paper-raised: #1F1B15;
+    --ink: #EEE9DF;
+    --ink-soft: #A69C89;
+    --line: #3A342A;
+    --accent: #9C86E8;
+    --accent-soft: #2A2440;
+    --info: #6FA8DC;
+    --info-soft: #202D3A;
+    --t-neu: #6FA8DC; --t-neu-soft: #202D3A;
+    --t-steigend: #7CC094; --t-steigend-soft: #1E2E22;
+    --t-stabil: #A39C89; --t-stabil-soft: #2A2620;
+    --t-abklingend: #C98B68; --t-abklingend-soft: #33241B;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.35);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #17140F;
+      --paper-raised: #1F1B15;
+      --ink: #EEE9DF;
+      --ink-soft: #A69C89;
+      --line: #3A342A;
+      --accent: #9C86E8;
+      --accent-soft: #2A2440;
+      --info: #6FA8DC;
+      --info-soft: #202D3A;
+      --t-neu: #6FA8DC; --t-neu-soft: #202D3A;
+      --t-steigend: #7CC094; --t-steigend-soft: #1E2E22;
+      --t-stabil: #A39C89; --t-stabil-soft: #2A2620;
+      --t-abklingend: #C98B68; --t-abklingend-soft: #33241B;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.35);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { background: var(--paper); color: var(--ink); margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+  .masthead { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem; }
+  .eyebrow {
+    font-family: "Century Gothic", Futura, "Segoe UI Semibold", system-ui, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  h1 {
+    font-family: "Century Gothic", Futura, "Segoe UI Semibold", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.7rem, 1.15rem + 2vw, 2.5rem);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .lede { color: var(--ink-soft); font-size: 0.95rem; max-width: 64ch; line-height: 1.55; }
+
+  .info-strip {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    background: var(--info-soft);
+    border: 1px solid color-mix(in srgb, var(--info) 40%, var(--line));
+    border-left: 4px solid var(--info);
+    border-radius: 6px;
+    padding: 0.85rem 1.1rem;
+    margin: 1.4rem 0 1.8rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .info-strip .glyph { font-size: 1rem; margin-top: 0.05rem; }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .stat { background: var(--paper-raised); border: 1px solid var(--line); border-radius: 8px; padding: 0.85rem 1rem; box-shadow: var(--shadow); }
+  .stat .label {
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .stat .value {
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 1.3rem; font-weight: 600; margin-top: 0.2rem;
+  }
+
+  .panel { background: var(--paper-raised); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); overflow: hidden; }
+  .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--line); }
+  .panel-head h2 {
+    font-family: "Century Gothic", Futura, "Segoe UI Semibold", system-ui, sans-serif;
+    font-size: 1.05rem; margin: 0; font-weight: 700;
+  }
+  .panel-head .hint { font-size: 0.78rem; color: var(--ink-soft); }
+
+  .table-scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 960px; font-size: 0.86rem; }
+  thead th {
+    position: sticky; top: 0; background: var(--paper-raised); text-align: left;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+    padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--line); cursor: pointer; white-space: nowrap;
+  }
+  thead th:hover { color: var(--accent); }
+  thead th.sorted::after { content: " ▾"; color: var(--accent); }
+  tbody td { padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--accent-soft); }
+
+  .num { font-family: ui-monospace, "SF Mono", Consolas, monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .idea-title { font-weight: 700; }
+  .idea-desc { color: var(--ink-soft); font-size: 0.82rem; max-width: 34ch; line-height: 1.4; margin-top: 0.15rem; }
+  .cat-chip {
+    display: inline-block; font-family: ui-monospace, monospace; font-size: 0.68rem;
+    padding: 0.14rem 0.5rem; border-radius: 99px; background: var(--accent-soft); color: var(--accent);
+    white-space: nowrap;
+  }
+  .trend-pill {
+    display: inline-flex; align-items: center; gap: 0.3rem; font-family: ui-monospace, monospace;
+    font-size: 0.72rem; font-weight: 600; padding: 0.16rem 0.55rem; border-radius: 99px; white-space: nowrap;
+  }
+  .trend-neu { background: var(--t-neu-soft); color: var(--t-neu); }
+  .trend-steigend { background: var(--t-steigend-soft); color: var(--t-steigend); }
+  .trend-stabil { background: var(--t-stabil-soft); color: var(--t-stabil); }
+  .trend-abklingend { background: var(--t-abklingend-soft); color: var(--t-abklingend); }
+
+  .quotes { max-width: 38ch; font-size: 0.8rem; line-height: 1.45; color: var(--ink-soft); }
+  .quotes blockquote { margin: 0 0 0.4rem 0; padding: 0; }
+  .quotes a { color: var(--accent); text-decoration: none; font-size: 0.76rem; }
+  .quotes a:hover { text-decoration: underline; }
+
+  footer { margin-top: 1.5rem; font-size: 0.76rem; color: var(--ink-soft); font-family: ui-monospace, monospace; }
+</style>
+
+<div class="masthead">
+  <span class="eyebrow">Demand-Gap Radar · Recherche, keine Garantie</span>
+  <h1>Demand-Gap Scanner</h1>
+  <p class="lede">Sammelt täglich öffentlich geäußerte, unerfüllte Bedürfnisse ("gibt es ein Tool das...", "wish there was an app that...") aus Hacker News, Google-Autocomplete und Stack Exchange, und clustert sie über Zeit zu wiederkehrenden Signalen.</p>
+</div>
+
+<div class="info-strip">
+  <span class="glyph">ℹ️</span>
+  <span>Automatisch gesammelte, öffentliche Erwähnungen — keine Garantie für Marktgröße, Umsetzbarkeit oder Wettbewerbssituation. Vor jeder Umsetzung selbst prüfen (Konkurrenzanalyse, Zielgruppengespräche).</span>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="label">Cluster gesamt</div><div class="value" id="stat-total">8</div></div>
+  <div class="stat"><div class="label">Neu heute</div><div class="value" id="stat-new">8</div></div>
+  <div class="stat"><div class="label">Kategorien</div><div class="value" id="stat-cats">8</div></div>
+  <div class="stat"><div class="label">Letztes Update</div><div class="value" id="stat-updated" style="font-size:0.9rem;">29.07.2026</div></div>
+</div>
+
+<div class="panel">
+  <div class="panel-head">
+    <h2>Bedarfssignale</h2>
+    <span class="hint">Sortiert nach Trend · Spaltenkopf klicken zum Umsortieren</span>
+  </div>
+  <div class="table-scroll">
+    <table id="cluster-table">
+      <thead>
+        <tr>
+          <th data-key="trend" class="sorted">Trend</th>
+          <th data-key="titel">Idee</th>
+          <th data-key="kategorie">Kategorie</th>
+          <th data-key="erwaehnungen_gesamt">Erwähnungen</th>
+          <th data-key="erstmals_gesehen">Erstmals</th>
+          <th data-key="zuletzt_gesehen">Zuletzt</th>
+          <th>Belege</th>
+        </tr>
+      </thead>
+      <tbody id="cluster-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<footer>demand-gap-scanner · Quellen: HN Algolia, Google-Autocomplete, Stack Exchange (öffentliche APIs) · lokal protokolliert unter ClaudeData/demand-gap-scanner/clusters.json</footer>
+
+<script>
+  const CLUSTERS = [
+  {
+    "id": "audio-restoration-ai",
+    "titel": "KI-Restaurierung für alte/verrauschte Audioaufnahmen",
+    "kategorie": "AI / Audio-Tools",
+    "beschreibung": "Nutzer wünschen sich Tools, die alte Musikaufnahmen auf moderne Klangqualität heben oder ein persönliches KI-Modell auf der eigenen Stimme trainieren, um verrauschte Mitschnitte (z.B. Vorlesungen) zu säubern.",
+    "erstmals_gesehen": "2026-07-29",
+    "zuletzt_gesehen": "2026-07-29",
+    "erwaehnungen_gesamt": 2,
+    "erwaehnungen_heute": 2,
+    "trend": "neu",
+    "beispiele": [
+      {"zitat": "I need an Audio tool to remaster old songs. Basically to bring old songs to modern crystal clear quality. I would be happy pay subscription fees. Is there a tool for that?", "quelle_url": "https://news.ycombinator.com/item?id=48267796", "datum": "2026-07-29"},
+      {"zitat": "I would like to have an AI audio model that I can train on hours of clean audio of my voice, and then feed it a very noisy audio file of a lecture I did, that it can effectively clean up to get rid of all the noise.", "quelle_url": "https://news.ycombinator.com/item?id=45051904", "datum": "2026-07-29"}
+    ]
+  },
+  {
+    "id": "cross-post-decentralized-social",
+    "titel": "Ein-Klick-Cross-Posting für Bluesky/Mastodon/Twitter",
+    "kategorie": "Social / Content-Tools",
+    "beschreibung": "Wiederkehrender Wunsch nach einem simplen Tool, das einen Post gleichzeitig auf mehrere dezentrale und zentrale Netzwerke verteilt, weil Organisationen oft nur auf einer Plattform posten.",
+    "erstmals_gesehen": "2026-07-29",
+    "zuletzt_gesehen": "2026-07-29",
+    "erwaehnungen_gesamt": 1,
+    "erwaehnungen_heute": 1,
+    "trend": "neu",
+    "beispiele": [
+      {"zitat": "Why isn't there an app that just posts to blue sky mastodon and twitter? I find it annoying that companies and some gov depts post on twitter only...", "quelle_url": "https://news.ycombinator.com/item?id=42160449", "datum": "2026-07-29"}
+    ]
+  },
+  {
+    "id": "grocery-price-comparison",
+    "titel": "App zum Vergleich von Lebensmittelpreisen",
+    "kategorie": "Consumer / Preisvergleich",
+    "beschreibung": "Google-Autocomplete zeigt anhaltende reale Suchnachfrage nach einer App, die Lebensmittelpreise über Supermärkte hinweg vergleicht — inflationsgetriebenes, wiederkehrendes Bedürfnis.",
+    "erstmals_gesehen": "2026-07-29",
+    "zuletzt_gesehen": "2026-07-29",
+    "erwaehnungen_gesamt": 1,
+    "erwaehnungen_heute": 1,
+    "trend": "neu",
+    "beispiele": [
+      {"zitat": "is there an app that compares grocery prices (Google-Autocomplete-Vorschlag)", "quelle_url": "https://www.google.com/search?q=is+there+an+app+that+compares+grocery+prices", "datum": "2026-07-29"}
+    ]
+  },
+  {
+    "id": "diy-wall-moisture-inspection",
+    "titel": "Heimwerker-Tool zur Wand-/Feuchtigkeitsprüfung",
+    "kategorie": "Consumer-Hardware / DIY",
+    "beschreibung": "Mehrere verwandte Autocomplete-Anfragen ('detect mold', 'detects water leaks', 'see through drywall/walls') deuten auf anhaltenden Bedarf an einem erschwinglichen Consumer-Gerät/App zur Wandinspektion hin.",
+    "erstmals_gesehen": "2026-07-29",
+    "zuletzt_gesehen": "2026-07-29",
+    "erwaehnungen_gesamt": 3,
+    "erwaehnungen_heute": 3,
+    "trend": "neu",
+    "beispiele": [
+      {"zitat": "is there a tool that can detect mold (Google-Autocomplete)", "quelle_url": "https://www.google.com/search?q=is+there+a+tool+that+can+detect+mold", "datum": "2026-07-29"},
+      {"zitat": "is there a tool that detects water leaks (Google-Autocomplete)", "quelle_url": "https://www.google.com/search?q=is+there+a+tool+that+detects+water+leaks", "datum": "2026-07-29"},
+      {"zitat": "is there a tool that can see through drywall (Google-Autocomplete)", "quelle_url": "https://www.google.com/search?q=is+there+a+tool+that+can+see+through+drywall", "datum": "2026-07-29"}
+    ]
+  },
+  {
+    "id": "dep-update-watcher",
+    "titel": "Einfacher Docker/Dependency-Versions-Watcher",
+    "kategorie": "Developer-Tools",
+    "beschreibung": "Wiederkehrende Entwickler-Frage nach einem leichtgewichtigen Tool, das sofort über neue Docker-Image-/Dependency-Versionen benachrichtigt — bestehende Lösungen (Renovate/Dependabot) gelten vielen als zu schwergewichtig.",
+    "erstmals_gesehen": "2026-07-29",
+    "zuletzt_gesehen": "2026-07-29",
+    "erwaehnungen_gesamt": 1,
+    "erwaehnungen_heute": 1,
+    "trend": "neu",
+    "beispiele": [
+      {"zitat": "Is there a tool that notifies immediately about new docker image versions", "quelle_url": "https://stackoverflow.com/questions/71504608/is-there-a-tool-that-notifies-immediately-about-new-docker-image-versions", "datum": "2026-07-29"}
+    ]
+  },
+  {
+    "id": "ios-simulator-agent-tooling",
+    "titel": "iOS-Simulator-Inspektionswerkzeug für KI-Coding-Agents",
+    "kategorie": "AI-Agent-Tooling",
+    "beschreibung": "Mit dem Aufkommen von KI-Coding-Agents (Claude/Cursor) fehlt ein Äquivalent zur Browser-Inspektion für den iOS-Simulator — zwei unabhängige Quellen bestätigen dieselbe Lücke.",
+    "erstmals_gesehen": "2026-07-29",
+    "zuletzt_gesehen": "2026-07-29",
+    "erwaehnungen_gesamt": 2,
+    "erwaehnungen_heute": 2,
+    "trend": "neu",
+    "beispiele": [
+      {"zitat": "What I'm missing is a tool to inspect iOS simulator the same way. Is there a tool for that yet? The Xcode MCP wasn't really helpful.", "quelle_url": "https://news.ycombinator.com/item?id=47501116", "datum": "2026-07-29"},
+      {"zitat": "Is there a way to grant Speech Recognition permissions programmatically for the iOS simulator?", "quelle_url": "https://stackoverflow.com/questions/79981394/is-there-a-way-to-grant-speech-recognition-permissions-programmatically-for-the", "datum": "2026-07-29"}
+    ]
+  },
+  {
+    "id": "release-safety-checker",
+    "titel": "Consumer-freundlicher Software-Release-Sicherheitscheck",
+    "kategorie": "Security",
+    "beschreibung": "Wunsch nach einem zugänglichen Tool, das ein Software-Release vorab auf Sicherheit prüft, bevor es installiert wird — Antivirus/EDR reagiert vielen Nutzern zu spät (Bezug auf CrowdStrike-Vorfall).",
+    "erstmals_gesehen": "2026-07-29",
+    "zuletzt_gesehen": "2026-07-29",
+    "erwaehnungen_gesamt": 1,
+    "erwaehnungen_heute": 1,
+    "trend": "neu",
+    "beispiele": [
+      {"zitat": "Is there a tool out there that you can put software releases into and it will tell you how safe it is? ... Crowdstrike and other modern antivirus may react to it once it's on a device.", "quelle_url": "https://news.ycombinator.com/item?id=47720321", "datum": "2026-07-29"}
+    ]
+  },
+  {
+    "id": "web-service-desktop-wrappers-mac",
+    "titel": "Native Desktop-Apps für web-only-Dienste auf dem Mac",
+    "kategorie": "Desktop-Utilities",
+    "beschreibung": "Anhaltende Autocomplete-Nachfrage nach nativen Mac-Apps für Dienste, die nur als Website existieren (Netflix, YouTube, Google Forms) — Nische für leichte Wrapper-Apps.",
+    "erstmals_gesehen": "2026-07-29",
+    "zuletzt_gesehen": "2026-07-29",
+    "erwaehnungen_gesamt": 3,
+    "erwaehnungen_heute": 3,
+    "trend": "neu",
+    "beispiele": [
+      {"zitat": "why is there no app for netflix on mac (Google-Autocomplete)", "quelle_url": "https://www.google.com/search?q=why+is+there+no+app+for+netflix+on+mac", "datum": "2026-07-29"},
+      {"zitat": "why is there no app for youtube on mac (Google-Autocomplete)", "quelle_url": "https://www.google.com/search?q=why+is+there+no+app+for+youtube+on+mac", "datum": "2026-07-29"},
+      {"zitat": "why is there no app for google forms (Google-Autocomplete)", "quelle_url": "https://www.google.com/search?q=why+is+there+no+app+for+google+forms", "datum": "2026-07-29"}
+    ]
+  }
+];
+
+  const trendWeight = { neu: 0, steigend: 1, stabil: 2, abklingend: 3 };
+  const trendLabel = { neu: "neu", steigend: "steigend ↑", stabil: "stabil", abklingend: "abklingend ↓" };
+
+  function fmtDate(iso) {
+    const [y, m, d] = iso.split("-");
+    return `${d}.${m}.${y}`;
+  }
+
+  function render(rows) {
+    const body = document.getElementById("cluster-body");
+    body.innerHTML = rows.map(c => `
+      <tr>
+        <td><span class="trend-pill trend-${c.trend}">${trendLabel[c.trend] || c.trend}</span></td>
+        <td>
+          <div class="idea-title">${c.titel}</div>
+          <div class="idea-desc">${c.beschreibung}</div>
+        </td>
+        <td><span class="cat-chip">${c.kategorie}</span></td>
+        <td class="num">${c.erwaehnungen_gesamt} (heute ${c.erwaehnungen_heute})</td>
+        <td class="num">${fmtDate(c.erstmals_gesehen)}</td>
+        <td class="num">${fmtDate(c.zuletzt_gesehen)}</td>
+        <td class="quotes">${c.beispiele.map(b => `<blockquote>&ldquo;${b.zitat}&rdquo;<br><a href="${b.quelle_url}" target="_blank" rel="noopener">Quelle ↗</a></blockquote>`).join("")}</td>
+      </tr>
+    `).join("");
+  }
+
+  let sortKey = "trend";
+  let sortDir = 1;
+  function sortAndRender() {
+    const rows = [...CLUSTERS].sort((a, b) => {
+      let av = a[sortKey], bv = b[sortKey];
+      if (sortKey === "trend") { av = trendWeight[a.trend]; bv = trendWeight[b.trend]; }
+      if (typeof av === "string" && sortKey !== "erstmals_gesehen" && sortKey !== "zuletzt_gesehen") {
+        av = av.toLowerCase(); bv = String(bv).toLowerCase();
+      }
+      return av > bv ? sortDir : av < bv ? -sortDir : 0;
+    });
+    render(rows);
+  }
+
+  document.querySelectorAll("thead th[data-key]").forEach(th => {
+    th.addEventListener("click", () => {
+      const key = th.dataset.key;
+      if (sortKey === key) { sortDir *= -1; } else { sortKey = key; sortDir = 1; }
+      document.querySelectorAll("thead th").forEach(x => x.classList.remove("sorted"));
+      th.classList.add("sorted");
+      sortAndRender();
+    });
+  });
+
+  document.getElementById("stat-total").textContent = CLUSTERS.length;
+  document.getElementById("stat-cats").textContent = new Set(CLUSTERS.map(c => c.kategorie)).size;
+
+  sortAndRender();
+</script>
