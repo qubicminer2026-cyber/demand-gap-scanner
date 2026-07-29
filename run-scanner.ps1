@@ -9,9 +9,9 @@ $runLog = Join-Path $logDir "runs.log"
 
 Push-Location $logDir
 & $claude -p "/demand-gap-scanner" `
-    --allowedTools "WebFetch,Bash,Read,Write,Edit" `
+    --allowedTools "WebFetch,WebSearch,Bash,Read,Write,Edit" `
     --permission-mode acceptEdits `
-    --max-budget-usd 0.40 `
+    --max-budget-usd 0.50 `
     --output-format text `
     --no-session-persistence *>> $runLog
 Pop-Location
