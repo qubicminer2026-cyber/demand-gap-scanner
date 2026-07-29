@@ -1,0 +1,32 @@
+{
+  "hinweis": "Pro Tageslauf genau 2 HN-Phrasen + 2 Autocomplete-Prefixe verwenden, nach Wochentag (0=Montag...6=Sonntag) rotierend. Reduziert Laufzeit/Kosten pro Lauf.",
+  "hn_pool": [
+    "is there a tool",
+    "wish there was a",
+    "why isn't there an app",
+    "does something like this exist",
+    "I wish someone would build",
+    "does anyone know a service",
+    "is there software that",
+    "why is there no tool"
+  ],
+  "autocomplete_pool": [
+    "is there a tool that",
+    "is there an app that",
+    "why is there no app for",
+    "gibt es ein tool das",
+    "kennt jemand eine app die",
+    "wünschte es gäbe ein tool das",
+    "is there a website that",
+    "why isn't there an app that"
+  ],
+  "rotation_by_weekday": {
+    "0": {"hn": [0, 1], "autocomplete": [0, 1]},
+    "1": {"hn": [2, 3], "autocomplete": [2, 3]},
+    "2": {"hn": [4, 5], "autocomplete": [4, 5]},
+    "3": {"hn": [6, 7], "autocomplete": [6, 7]},
+    "4": {"hn": [0, 1], "autocomplete": [2, 3]},
+    "5": {"hn": [2, 3], "autocomplete": [4, 5]},
+    "6": {"hn": [4, 5], "autocomplete": [6, 7]}
+  }
+}
