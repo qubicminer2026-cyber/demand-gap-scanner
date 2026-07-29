@@ -5,10 +5,10 @@
     "kategorie": "AI / Audio-Tools",
     "beschreibung": "Nutzer wünschen sich Tools, die alte Musikaufnahmen auf moderne Klangqualität heben oder ein persönliches KI-Modell auf der eigenen Stimme trainieren, um verrauschte Mitschnitte (z.B. Vorlesungen) zu säubern.",
     "erstmals_gesehen": "2026-07-29",
-    "zuletzt_gesehen": "2026-07-29",
-    "erwaehnungen_gesamt": 2,
-    "erwaehnungen_heute": 2,
-    "trend": "neu",
+    "zuletzt_gesehen": "2026-07-30",
+    "erwaehnungen_gesamt": 3,
+    "erwaehnungen_heute": 1,
+    "trend": "steigend",
     "beispiele": [
       {
         "zitat": "I need an Audio tool to remaster old songs. Basically to bring old songs to modern crystal clear quality. I would be happy pay subscription fees. Is there a tool for that?",
@@ -19,12 +19,21 @@
         "zitat": "I would like to have an AI audio model that I can train on hours of clean audio of my voice, and then feed it a very noisy audio file of a lecture I did, that it can effectively clean up to get rid of all the noise.",
         "quelle_url": "https://news.ycombinator.com/item?id=45051904",
         "datum": "2026-07-29"
+      },
+      {
+        "zitat": "Related question: is there software that ask you to read a few pages of text and then is able to do text to speech with result close to your voice?",
+        "quelle_url": "https://news.ycombinator.com/item?id=33165428",
+        "datum": "2026-07-30"
       }
     ],
     "verlauf": [
       {
         "datum": "2026-07-29",
         "erwaehnungen": 2
+      },
+      {
+        "datum": "2026-07-30",
+        "erwaehnungen": 3
       }
     ],
     "wettbewerb": {
@@ -44,7 +53,7 @@
     "erstmals_gesehen": "2026-07-29",
     "zuletzt_gesehen": "2026-07-29",
     "erwaehnungen_gesamt": 1,
-    "erwaehnungen_heute": 1,
+    "erwaehnungen_heute": 0,
     "trend": "neu",
     "beispiele": [
       {
@@ -76,7 +85,7 @@
     "erstmals_gesehen": "2026-07-29",
     "zuletzt_gesehen": "2026-07-29",
     "erwaehnungen_gesamt": 1,
-    "erwaehnungen_heute": 1,
+    "erwaehnungen_heute": 0,
     "trend": "neu",
     "beispiele": [
       {
@@ -108,7 +117,7 @@
     "erstmals_gesehen": "2026-07-29",
     "zuletzt_gesehen": "2026-07-29",
     "erwaehnungen_gesamt": 3,
-    "erwaehnungen_heute": 3,
+    "erwaehnungen_heute": 0,
     "trend": "neu",
     "beispiele": [
       {
@@ -150,7 +159,7 @@
     "erstmals_gesehen": "2026-07-29",
     "zuletzt_gesehen": "2026-07-29",
     "erwaehnungen_gesamt": 1,
-    "erwaehnungen_heute": 1,
+    "erwaehnungen_heute": 0,
     "trend": "neu",
     "beispiele": [
       {
@@ -182,7 +191,7 @@
     "erstmals_gesehen": "2026-07-29",
     "zuletzt_gesehen": "2026-07-29",
     "erwaehnungen_gesamt": 2,
-    "erwaehnungen_heute": 2,
+    "erwaehnungen_heute": 0,
     "trend": "neu",
     "beispiele": [
       {
@@ -219,7 +228,7 @@
     "erstmals_gesehen": "2026-07-29",
     "zuletzt_gesehen": "2026-07-29",
     "erwaehnungen_gesamt": 1,
-    "erwaehnungen_heute": 1,
+    "erwaehnungen_heute": 0,
     "trend": "neu",
     "beispiele": [
       {
@@ -251,7 +260,7 @@
     "erstmals_gesehen": "2026-07-29",
     "zuletzt_gesehen": "2026-07-29",
     "erwaehnungen_gesamt": 3,
-    "erwaehnungen_heute": 3,
+    "erwaehnungen_heute": 0,
     "trend": "neu",
     "beispiele": [
       {
@@ -293,7 +302,7 @@
     "erstmals_gesehen": "2026-07-29",
     "zuletzt_gesehen": "2026-07-29",
     "erwaehnungen_gesamt": 1,
-    "erwaehnungen_heute": 1,
+    "erwaehnungen_heute": 0,
     "trend": "neu",
     "beispiele": [
       {
@@ -325,7 +334,7 @@
     "erstmals_gesehen": "2026-07-29",
     "zuletzt_gesehen": "2026-07-29",
     "erwaehnungen_gesamt": 1,
-    "erwaehnungen_heute": 1,
+    "erwaehnungen_heute": 0,
     "trend": "neu",
     "beispiele": [
       {
@@ -347,6 +356,38 @@
     "umsetzbarkeit": {
       "einschaetzung": "Wochenende",
       "begruendung": "Whisper-Wrapper-Script ist einfach zu bauen, Kerntechnologie ist bereits fertig."
+    }
+  },
+  {
+    "id": "property-lines-lookup",
+    "titel": "Einfaches Nachschlage-Tool fuer Grundstuecksgrenzen",
+    "kategorie": "Consumer / Immobilien",
+    "beschreibung": "Nutzer fragen wiederkehrend nach einer Website/App, die Grundstuecksgrenzen zuverlaessig anzeigt - nuetzlich bei Grenzstreitigkeiten, Zaunbau oder Grundstueckskauf.",
+    "erstmals_gesehen": "2026-07-30",
+    "zuletzt_gesehen": "2026-07-30",
+    "erwaehnungen_gesamt": 1,
+    "erwaehnungen_heute": 1,
+    "trend": "neu",
+    "beispiele": [
+      {
+        "zitat": "is there a website that shows property lines (Google-Autocomplete)",
+        "quelle_url": "https://www.google.com/search?q=is+there+a+website+that+shows+property+lines",
+        "datum": "2026-07-30"
+      }
+    ],
+    "verlauf": [
+      {
+        "datum": "2026-07-30",
+        "erwaehnungen": 1
+      }
+    ],
+    "wettbewerb": {
+      "status": "teilweise_gedeckt",
+      "notiz": "Apps wie LandGlide/Regrid existieren in den USA, aber Abdeckung/Genauigkeit ist je nach Bezirk/Land sehr lueckenhaft und oft kostenpflichtig."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Monate",
+      "begruendung": "Grundstuecksdaten liegen fragmentiert bei einzelnen Katasteraemtern/Bezirken vor, Aggregation ist ein laufender Datenintegrations-Aufwand."
     }
   }
 ]
