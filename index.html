@@ -150,6 +150,19 @@
   .trend-stabil { background: var(--t-stabil-soft); color: var(--t-stabil); }
   .trend-abklingend { background: var(--t-abklingend-soft); color: var(--t-abklingend); }
 
+  .mini-pill {
+    display: inline-block; font-family: ui-monospace, monospace; font-size: 0.7rem;
+    font-weight: 600; padding: 0.14rem 0.5rem; border-radius: 99px; white-space: nowrap;
+  }
+  .wb-kein_gutes_produkt { background: var(--t-steigend-soft); color: var(--t-steigend); }
+  .wb-teilweise_gedeckt { background: var(--t-neu-soft); color: var(--t-neu); }
+  .wb-gut_gedeckt { background: var(--t-abklingend-soft); color: var(--t-abklingend); }
+  .wb-unklar { background: var(--t-stabil-soft); color: var(--t-stabil); }
+  .feas-Wochenende { background: var(--t-steigend-soft); color: var(--t-steigend); }
+  .feas-Wochen { background: var(--t-neu-soft); color: var(--t-neu); }
+  .feas-Monate { background: var(--t-abklingend-soft); color: var(--t-abklingend); }
+  .mini-note { display: block; font-size: 0.72rem; color: var(--ink-soft); margin-top: 0.3rem; max-width: 20ch; line-height: 1.35; }
+
   .spark-cell { display: flex; align-items: center; gap: 0.4rem; }
   .spark { display: block; }
   .spark-count { font-family: ui-monospace, monospace; font-size: 0.72rem; color: var(--ink-soft); }
@@ -196,6 +209,8 @@
           <th data-key="erwaehnungen_gesamt">Erwähnungen</th>
           <th data-key="erstmals_gesehen">Erstmals</th>
           <th data-key="zuletzt_gesehen">Zuletzt</th>
+          <th>Wettbewerb</th>
+          <th>Umsetzbarkeit</th>
           <th>Belege</th>
         </tr>
       </thead>
@@ -235,7 +250,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 2
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "teilweise_gedeckt",
+      "notiz": "Adobe Podcast Enhance, iZotope RX decken allgemeine Rauschentfernung ab, aber kein Endnutzer-Produkt trainiert ein personalisiertes Modell auf der eigenen Stimme."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Monate",
+      "begruendung": "Erfordert ML-Trainings-Pipeline pro Nutzer und Audio-DSP-Expertise, kein reines Wrapper-Projekt."
+    }
   },
   {
     "id": "cross-post-decentralized-social",
@@ -259,7 +282,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 1
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "teilweise_gedeckt",
+      "notiz": "Buffer/Hootsuite/Repost decken Cross-Posting ab, aber Bluesky/Mastodon-Unterstützung ist bei den großen Tools oft schwach oder fehlt."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Wochen",
+      "begruendung": "Alle noetigen APIs (Mastodon, Bluesky/AT-Proto, X) sind offen dokumentiert, im Kern ein CRUD-Tool, aber mehrere Plattform-Integrationen kosten mehr als ein Wochenende."
+    }
   },
   {
     "id": "grocery-price-comparison",
@@ -283,7 +314,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 1
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "teilweise_gedeckt",
+      "notiz": "Regional existieren Apps (z.B. Marktguru), Abdeckung/Aktualität je nach Land/Supermarkt aber oft lückenhaft."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Monate",
+      "begruendung": "Braucht laufende Dateneinspeisung von vielen Supermarktketten (Scraping/Feeds), hoher Wartungsaufwand."
+    }
   },
   {
     "id": "diy-wall-moisture-inspection",
@@ -317,7 +356,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 3
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "kein_gutes_produkt",
+      "notiz": "Einfache Feuchtigkeitsmessgeräte existieren als Hardware, aber ein smartes 'durch die Wand sehen'-Konsumgerät ist rar/teuer (nur Profi-Wärmebildkameras)."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Monate",
+      "begruendung": "Hardware-Entwicklung nötig (Sensorik), kein reines Software-Projekt."
+    }
   },
   {
     "id": "dep-update-watcher",
@@ -341,7 +388,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 1
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "gut_gedeckt",
+      "notiz": "Renovate/Dependabot/Watchtower existieren bereits, gelten vielen aber als zu schwergewichtig für reine Benachrichtigung ohne PR-Automation."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Wochenende",
+      "begruendung": "Einfaches Polling-Script gegen Registry-API plus Webhook-Benachrichtigung."
+    }
   },
   {
     "id": "ios-simulator-agent-tooling",
@@ -370,7 +425,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 2
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "teilweise_gedeckt",
+      "notiz": "Ein Xcode-MCP-Server existiert laut Quelle bereits, gilt den Nutzern aber als unzureichend — deutliche Lücke bleibt."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Wochen",
+      "begruendung": "Baut auf bestehenden Simulator-APIs auf, aber MCP-Server- und Automatisierungs-Layer braucht mehr als ein Wochenende."
+    }
   },
   {
     "id": "release-safety-checker",
@@ -394,7 +457,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 1
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "teilweise_gedeckt",
+      "notiz": "VirusTotal deckt den technischen Scan-Kern ab, aber es fehlt eine für Laien verständliche 'vor der Installation pruefen'-Oberflaeche."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Wochen",
+      "begruendung": "Koennte auf der VirusTotal-API aufbauen statt einer eigenen Scan-Engine, spart Kernkomplexitaet."
+    }
   },
   {
     "id": "web-service-desktop-wrappers-mac",
@@ -428,7 +499,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 3
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "gut_gedeckt",
+      "notiz": "Coherence X, Unite und WebCatalog decken genau das bereits ab — kaum noch echte Luecke."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Wochenende",
+      "begruendung": "Electron/Tauri-Wrapper ist simpel, aber wegen guter Abdeckung wenig Differenzierungspotenzial."
+    }
   },
   {
     "id": "network-anomaly-diagnosis-tool",
@@ -452,7 +531,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 1
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "teilweise_gedeckt",
+      "notiz": "Darktrace/Corelight/Zeek+ML existieren im Enterprise-Bereich, aber keine zugaengliche Loesung fuer Heimanwender/kleine Netzwerke."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Monate",
+      "begruendung": "Anomalieerkennung mit vertretbarer Fehlerrate ist ein echtes ML-Problem, kein simples Dashboard."
+    }
   },
   {
     "id": "batch-audio-transcription",
@@ -476,7 +563,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 1
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "gut_gedeckt",
+      "notiz": "Whisper (Open-Source) und darauf aufbauende Batch-Tools existieren bereits fertig nutzbar."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Wochenende",
+      "begruendung": "Whisper-Wrapper-Script ist einfach zu bauen, Kerntechnologie ist bereits fertig."
+    }
   }
 ];
 
@@ -486,6 +581,21 @@
   function fmtDate(iso) {
     const [y, m, d] = iso.split("-");
     return `${d}.${m}.${y}`;
+  }
+
+  const wbLabel = {
+    kein_gutes_produkt: "kein gutes Produkt",
+    teilweise_gedeckt: "teilweise gedeckt",
+    gut_gedeckt: "gut gedeckt",
+    unklar: "unklar"
+  };
+  function wettbewerbCell(w) {
+    if (!w) return '<span class="mini-pill wb-unklar">unklar</span>';
+    return `<span class="mini-pill wb-${w.status}">${wbLabel[w.status] || w.status}</span><span class="mini-note">${w.notiz}</span>`;
+  }
+  function feasCell(u) {
+    if (!u) return "—";
+    return `<span class="mini-pill feas-${u.einschaetzung}">${u.einschaetzung}</span><span class="mini-note">${u.begruendung}</span>`;
   }
 
   function render(rows) {
@@ -507,6 +617,8 @@
         <td class="num">${c.erwaehnungen_gesamt} (heute ${c.erwaehnungen_heute})</td>
         <td class="num">${fmtDate(c.erstmals_gesehen)}</td>
         <td class="num">${fmtDate(c.zuletzt_gesehen)}</td>
+        <td>${wettbewerbCell(c.wettbewerb)}</td>
+        <td>${feasCell(c.umsetzbarkeit)}</td>
         <td class="quotes">${c.beispiele.map(b => `<blockquote>&ldquo;${b.zitat}&rdquo;<br><a href="${b.quelle_url}" target="_blank" rel="noopener">Quelle ↗</a></blockquote>`).join("")}</td>
       </tr>
     `).join("");

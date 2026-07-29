@@ -26,7 +26,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 2
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "teilweise_gedeckt",
+      "notiz": "Adobe Podcast Enhance, iZotope RX decken allgemeine Rauschentfernung ab, aber kein Endnutzer-Produkt trainiert ein personalisiertes Modell auf der eigenen Stimme."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Monate",
+      "begruendung": "Erfordert ML-Trainings-Pipeline pro Nutzer und Audio-DSP-Expertise, kein reines Wrapper-Projekt."
+    }
   },
   {
     "id": "cross-post-decentralized-social",
@@ -50,7 +58,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 1
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "teilweise_gedeckt",
+      "notiz": "Buffer/Hootsuite/Repost decken Cross-Posting ab, aber Bluesky/Mastodon-Unterstützung ist bei den großen Tools oft schwach oder fehlt."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Wochen",
+      "begruendung": "Alle noetigen APIs (Mastodon, Bluesky/AT-Proto, X) sind offen dokumentiert, im Kern ein CRUD-Tool, aber mehrere Plattform-Integrationen kosten mehr als ein Wochenende."
+    }
   },
   {
     "id": "grocery-price-comparison",
@@ -74,7 +90,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 1
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "teilweise_gedeckt",
+      "notiz": "Regional existieren Apps (z.B. Marktguru), Abdeckung/Aktualität je nach Land/Supermarkt aber oft lückenhaft."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Monate",
+      "begruendung": "Braucht laufende Dateneinspeisung von vielen Supermarktketten (Scraping/Feeds), hoher Wartungsaufwand."
+    }
   },
   {
     "id": "diy-wall-moisture-inspection",
@@ -108,7 +132,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 3
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "kein_gutes_produkt",
+      "notiz": "Einfache Feuchtigkeitsmessgeräte existieren als Hardware, aber ein smartes 'durch die Wand sehen'-Konsumgerät ist rar/teuer (nur Profi-Wärmebildkameras)."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Monate",
+      "begruendung": "Hardware-Entwicklung nötig (Sensorik), kein reines Software-Projekt."
+    }
   },
   {
     "id": "dep-update-watcher",
@@ -132,7 +164,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 1
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "gut_gedeckt",
+      "notiz": "Renovate/Dependabot/Watchtower existieren bereits, gelten vielen aber als zu schwergewichtig für reine Benachrichtigung ohne PR-Automation."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Wochenende",
+      "begruendung": "Einfaches Polling-Script gegen Registry-API plus Webhook-Benachrichtigung."
+    }
   },
   {
     "id": "ios-simulator-agent-tooling",
@@ -161,7 +201,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 2
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "teilweise_gedeckt",
+      "notiz": "Ein Xcode-MCP-Server existiert laut Quelle bereits, gilt den Nutzern aber als unzureichend — deutliche Lücke bleibt."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Wochen",
+      "begruendung": "Baut auf bestehenden Simulator-APIs auf, aber MCP-Server- und Automatisierungs-Layer braucht mehr als ein Wochenende."
+    }
   },
   {
     "id": "release-safety-checker",
@@ -185,7 +233,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 1
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "teilweise_gedeckt",
+      "notiz": "VirusTotal deckt den technischen Scan-Kern ab, aber es fehlt eine für Laien verständliche 'vor der Installation pruefen'-Oberflaeche."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Wochen",
+      "begruendung": "Koennte auf der VirusTotal-API aufbauen statt einer eigenen Scan-Engine, spart Kernkomplexitaet."
+    }
   },
   {
     "id": "web-service-desktop-wrappers-mac",
@@ -219,7 +275,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 3
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "gut_gedeckt",
+      "notiz": "Coherence X, Unite und WebCatalog decken genau das bereits ab — kaum noch echte Luecke."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Wochenende",
+      "begruendung": "Electron/Tauri-Wrapper ist simpel, aber wegen guter Abdeckung wenig Differenzierungspotenzial."
+    }
   },
   {
     "id": "network-anomaly-diagnosis-tool",
@@ -243,7 +307,15 @@
         "datum": "2026-07-29",
         "erwaehnungen": 1
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "teilweise_gedeckt",
+      "notiz": "Darktrace/Corelight/Zeek+ML existieren im Enterprise-Bereich, aber keine zugaengliche Loesung fuer Heimanwender/kleine Netzwerke."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Monate",
+      "begruendung": "Anomalieerkennung mit vertretbarer Fehlerrate ist ein echtes ML-Problem, kein simples Dashboard."
+    }
   },
   {
     "id": "batch-audio-transcription",
@@ -267,6 +339,14 @@
         "datum": "2026-07-29",
         "erwaehnungen": 1
       }
-    ]
+    ],
+    "wettbewerb": {
+      "status": "gut_gedeckt",
+      "notiz": "Whisper (Open-Source) und darauf aufbauende Batch-Tools existieren bereits fertig nutzbar."
+    },
+    "umsetzbarkeit": {
+      "einschaetzung": "Wochenende",
+      "begruendung": "Whisper-Wrapper-Script ist einfach zu bauen, Kerntechnologie ist bereits fertig."
+    }
   }
 ]
