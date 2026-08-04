@@ -364,10 +364,10 @@
     "kategorie": "Consumer / Immobilien",
     "beschreibung": "Nutzer fragen wiederkehrend nach einer Website/App, die Grundstuecksgrenzen zuverlaessig anzeigt - nuetzlich bei Grenzstreitigkeiten, Zaunbau oder Grundstueckskauf.",
     "erstmals_gesehen": "2026-07-30",
-    "zuletzt_gesehen": "2026-07-30",
-    "erwaehnungen_gesamt": 1,
+    "zuletzt_gesehen": "2026-08-02",
+    "erwaehnungen_gesamt": 2,
     "erwaehnungen_heute": 1,
-    "trend": "neu",
+    "trend": "steigend",
     "beispiele": [
       {
         "zitat": "is there a website that shows property lines (Google-Autocomplete)",
@@ -379,6 +379,10 @@
       {
         "datum": "2026-07-30",
         "erwaehnungen": 1
+      },
+      {
+        "datum": "2026-08-02",
+        "erwaehnungen": 2
       }
     ],
     "wettbewerb": {
